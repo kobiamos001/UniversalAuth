@@ -9,7 +9,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-configure ([project(':faceunlock'), project(':universalauth-xposed')]) {
+configure ([project(':faceunlock')]) {
     afterEvaluate {
         android {
             defaultConfig {
