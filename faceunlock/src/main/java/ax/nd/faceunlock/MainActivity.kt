@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
     private lateinit var binding: ActivityMain2Binding
     private var removeFaceController: RemoveFaceController? = null
     private val chooseLibsViewModel: ChooseLibsViewModel by viewModels()
-//    private var pickLibsLauncher: Map<String, ActivityResultLauncher<String>>? = null
     private var pickApkLauncher: ActivityResultLauncher<String>? = null
     private var requestUnlockPermsLauncher: ActivityResultLauncher<String>? = null
 
@@ -35,6 +34,9 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // אתחול המנהל - יטען את ה-jniLibs באופן אוטומטי
+        LibManager.init(this)
+
         binding.setupBtn.setOnClickListener {
             startActivity(Intent(this, SetupFaceIntroActivity::class.java))
         }
@@ -42,64 +44,39 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
             startActivity(Intent(this, FaceAuthActivity::class.java))
         }
 
-        /*pickLibsLauncher = LibManager.requiredLibraries.associate {
-            it.name to registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-                if(uri != null)
-                    chooseLibsViewModel.addLib(this, it, uri)
-            }
-        }*/
-
         pickApkLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-            if(uri != null)
-                chooseLibsViewModel.downloadLibs(this, uri)
+            if(uri != null) chooseLibsViewModel.downloadLibs(this, uri)
         }
 
         requestUnlockPermsLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {}
 
-        if(LibManager.librariesData.value.all { it.valid }) {
-            // All libs valid, perform permission checks
-            checkAndAskForPermissions()
-        } else {
-            // First setup libs
-            DownloadLibsDialog(this, chooseLibsViewModel).open()
-//            ChooseLibsDialog(this, chooseLibsViewModel).open()
-        }
+        // דילוג על דיאלוג ההורדה - עובר ישר לבדיקת הרשאות עבודה
+        checkAndAskForPermissions()
 
         lifecycleScope.launch {
-            // Update lib load error
-            var curErrorDialog: MaterialDialog? = null
             LibManager.libLoadError.flowWithLifecycle(lifecycle).collect { error ->
                 if(error != null) {
-                    curErrorDialog?.cancel()
-                    curErrorDialog = MaterialDialog(this@MainActivity).show {
+                    MaterialDialog(this@MainActivity).show {
                         title(text = "Fatal error")
-                        message(text = "Failed to load libraries, application will now crash!")
-                        positiveButton(text = "Ok :(") {
-                            throw error
-                        }
-                        cancelable(false)
-                        cancelOnTouchOutside(false)
+                        message(text = "Failed to load libraries from jniLibs!")
+                        positiveButton(text = "Ok") { finish() }
                     }
                 }
             }
         }
     }
 
-    // Called once all libs are valid
     fun checkAndAskForPermissions() {
-        // Request permission to unlock device if not yet granted
         if(ContextCompat.checkSelfPermission(this, XposedConstants.PERMISSION_UNLOCK_DEVICE) != PackageManager.PERMISSION_GRANTED) {
             requestUnlockPermsLauncher?.launch(XposedConstants.PERMISSION_UNLOCK_DEVICE)
         }
 
-        // Request accessibility prefs
         if(!isAccessServiceEnabled(this, LockscreenFaceAuthService::class.java)) {
             MaterialDialog(this).show {
-                title(text = "Accessibility service not enabled")
-                message(text = "Face unlock needs accessibility access to interact with your lock screen. Please enable the 'Face unlock' accessibility service on the next page.")
-                positiveButton(text = "Ok") {
-                    val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
-                    startActivity(intent)
+                title(text = "Accessibility service required")
+                message(text = "Please enable 'Face unlock' in accessibility settings.")
+                positiveButton(text = "Open Settings") {
+                    startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
                 }
             }
         }
@@ -107,7 +84,6 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
 
     override fun onResume() {
         super.onResume()
-
         updateButtons()
     }
 
@@ -118,19 +94,12 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
 
     private fun isAccessServiceEnabled(context: Context, accessibilityServiceClass: Class<*>): Boolean {
         val prefString = Settings.Secure.getString(context.contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
-        val serviceName = accessibilityServiceClass.canonicalName
-        return prefString?.split(":")?.filter { it.isNotBlank() }?.any {
-            val slashIndex = it.indexOf('/')
-            val possibleServiceName = it.substring(slashIndex + 1)
-            possibleServiceName == serviceName || (it.substring(0, slashIndex) + possibleServiceName) == serviceName
-        } == true
+        return prefString?.contains(accessibilityServiceClass.canonicalName) == true
     }
 
     private fun removeFace(faceId: Int) {
         releaseRemoveFaceController()
-        removeFaceController = RemoveFaceController(this, faceId, this).apply {
-            start()
-        }
+        removeFaceController = RemoveFaceController(this, faceId, this).apply { start() }
     }
 
     private fun releaseRemoveFaceController() {
@@ -141,15 +110,11 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
     private fun updateButtons() {
         val faceId = SharedUtil(this).getIntValueByKey(AppConstants.SHARED_KEY_FACE_ID)
         if(faceId > -1) {
-            // Face enrolled
             binding.setupBtn.isEnabled = false
             binding.authBtn.isEnabled = true
             binding.removeBtn.isEnabled = true
-            binding.removeBtn.setOnClickListener {
-                removeFace(faceId)
-            }
+            binding.removeBtn.setOnClickListener { removeFace(faceId) }
         } else {
-            // No face enrolled
             binding.setupBtn.isEnabled = true
             binding.authBtn.isEnabled = false
             binding.removeBtn.isEnabled = false
@@ -166,14 +131,10 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
 
     override fun onError(errId: Int, message: String) {
         runOnUiThread {
-            Toast.makeText(this, "Failed to remove face: $message", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Error: $message", Toast.LENGTH_LONG).show()
             releaseRemoveFaceController()
         }
     }
-
-//    fun browseForFiles(lib: RequiredLib) {
-//        pickLibsLauncher?.get(lib.name)?.launch("*/*")
-//    }
 
     fun browseForFiles() {
         pickApkLauncher?.launch("*/*")
