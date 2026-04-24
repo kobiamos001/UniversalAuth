@@ -1,8 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <style name="AppTheme.NoActionBar" >
-  <item name="windowActionBar">false</item>
-  <item name="windowNoTitle">true</item>
-</style>
-  <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-  <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!-- Base application theme. Material3 is the most modern Android design system -->
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/theme_color</item>
+        <item name="colorSecondary">@color/theme_color</item>
+        <!-- Enables standard modern window transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+    </style>
+
+    <!-- Keep your settings theme if needed for the Fragment -->
+    <style name="SettingsTheme" parent="Theme.Material3.DayNight">
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimary">@color/theme_color</item>
+        <item name="colorSecondary">@color/theme_color</item>
+    </style>
 </resources>
