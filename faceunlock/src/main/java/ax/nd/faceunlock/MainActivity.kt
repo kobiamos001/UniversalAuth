@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
@@ -40,13 +41,23 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
         binding.setupBtn.setOnClickListener {
             startActivity(Intent(this, SetupFaceIntroActivity::class.java))
         }
+        
         binding.authBtn.setOnClickListener {
             startActivity(Intent(this, FaceAuthActivity::class.java))
         }
-        
-        // --- תוספת: כפתור פתיחת ההגדרות החדש ---
+
+        // --- כפתור פתיחת הגדרות ---
         binding.btnOpenSettings.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
+        }
+
+        // --- כפתור פתיחת חלונית אודות ---
+        binding.btnAbout.setOnClickListener {
+            val dialogView = layoutInflater.inflate(R.layout.dialog_about, null)
+            AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setPositiveButton("Close") { dialog, _ -> dialog.dismiss() }
+                .show()
         }
 
         pickApkLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
