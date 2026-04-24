@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?android:attr/colorBackground">
+
+    <!-- סרגל כלים עם חץ חזור -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?android:attr/colorBackground"
+        app:title="Settings"
+        app:navigationIcon="@android:drawable/ic_menu_revert" />
+
+    <!-- כאן יופיעו המתגים -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/settings_fragment_container"
+        android:name="ax.nd.faceunlock.pref.SettingsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
