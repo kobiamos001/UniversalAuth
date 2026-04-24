@@ -11,34 +11,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="40dp">
+        android:paddingBottom="24dp">
 
-        <!-- Header Bar (כותרת וכפתורי צד) -->
-        <ImageButton
-            android:id="@+id/btn_about"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/bg_icon_button"
-            android:src="@drawable/ic_info_custom"
-            android:padding="10dp"
-            android:scaleType="fitCenter"
-            app:tint="@color/text_main"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+        <!-- Header Bar -->
         <TextView
             android:id="@+id/main_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:text="Security"
             android:textSize="18sp"
-            android:textStyle="bold"
             android:textColor="@color/text_main"
             android:fontFamily="sans-serif-medium"
-            app:layout_constraintTop_toTopOf="@id/btn_about"
-            app:layout_constraintBottom_toBottomOf="@id/btn_about"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -46,17 +31,17 @@
             android:id="@+id/btn_open_settings"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/bg_icon_button"
             android:src="@drawable/ic_settings_custom"
             android:padding="10dp"
             android:scaleType="fitCenter"
             app:tint="@color/text_main"
+            app:layout_constraintBottom_toBottomOf="@id/main_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/main_title" />
 
-        <!-- Status Card (כרטיסיית סטטוס מרכזית) -->
+        <!-- Status Card -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/status_card"
             android:layout_width="match_parent"
@@ -68,7 +53,7 @@
             app:strokeWidth="1dp"
             app:strokeColor="@color/stroke_color"
             app:cardBackgroundColor="@color/card_white"
-            app:layout_constraintTop_toBottomOf="@id/btn_about">
+            app:layout_constraintTop_toBottomOf="@id/main_title">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,7 +62,6 @@
                 android:gravity="center"
                 android:padding="40dp">
 
-                <!-- עיגול רקע לאייקון -->
                 <FrameLayout
                     android:layout_width="80dp"
                     android:layout_height="80dp"
@@ -111,8 +95,9 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Actions Container (אזור הכפתורים - ללא אייקונים) -->
+        <!-- Actions Container -->
         <LinearLayout
+            android:id="@+id/actions_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -120,7 +105,7 @@
             android:layout_marginTop="32dp"
             app:layout_constraintTop_toBottomOf="@id/status_card">
 
-            <!-- כפתור ראשי (Filled) -->
+            <!-- Set Up Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/setup_btn"
                 android:layout_width="match_parent"
@@ -136,7 +121,7 @@
                 android:backgroundTint="@color/primary"
                 android:textColor="@android:color/white" />
 
-            <!-- כפתור משני (Outlined) -->
+            <!-- Test Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/auth_btn"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -152,19 +137,52 @@
                 app:cornerRadius="18dp"
                 android:textColor="@color/primary" />
 
-            <!-- כפתור סכנה (Text) -->
+            <!-- Delete Button (Updated with red stroke) -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/remove_btn"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="16dp"
                 android:text="Delete Face Data"
                 android:textAllCaps="false"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:fontFamily="sans-serif-medium"
+                app:strokeColor="@color/error_red"
+                app:strokeWidth="1.5dp"
+                app:cornerRadius="18dp"
                 android:textColor="@color/error_red" />
 
         </LinearLayout>
+
+        <!-- Footer Design -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/actions_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HPower"
+                android:textSize="28sp"
+                android:textColor="#94A3B8"
+                android:fontFamily="cursive"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:text="©"
+                android:textSize="18sp"
+                android:textColor="#94A3B8" />
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
