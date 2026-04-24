@@ -18,7 +18,7 @@ class DownloadLibsDialog(private val activity: MainActivity, private val viewMod
                 .combine(LibManager.librariesData) { a, b -> a to b }
                 .transformWhile { pair ->
                     emit(pair)
-                    pair.second.any { !it.valid } // Terminate flow once all libs are valid
+                    pair.second.any { !it.valid }
                 }
                 .flowWithLifecycle(activity.lifecycle)
                 .collect { (status, libs) ->
@@ -27,19 +27,16 @@ class DownloadLibsDialog(private val activity: MainActivity, private val viewMod
 
                     when {
                         libs.all { it.valid } -> {
-                            // All libs valid, continue to check perms
                             activity.checkAndAskForPermissions()
                         }
                         status == null -> {
-                            // Ask download
                             dialog = MaterialDialog(activity).show {
-                                title(text = "Download required")
-                                message(text = "The app needs to download some library files (<35 MB) necessary for face recognition to work. Download them now?" +
-                                        "\n\nAlternatively, you can import the file manually.")
+                                title(res = R.string.download_required)
+                                message(res = R.string.download_message)
                                 positiveButton(android.R.string.ok) {
                                     viewModel.downloadLibs(activity, null)
                                 }
-                                negativeButton(text = "Manual import") {
+                                negativeButton(res = R.string.manual_import) {
                                     viewModel.setAskImport()
                                 }
                                 cancelOnTouchOutside(false)
@@ -48,10 +45,9 @@ class DownloadLibsDialog(private val activity: MainActivity, private val viewMod
                             }
                         }
                         status is DownloadStatus.AskImport -> {
-                            // Ask user to import libraries manually
                             dialog = MaterialDialog(activity).show {
-                                title(text = "Manual import")
-                                message(text = "Please find the APK of version 01.03.0312 of the 'Moto Face Unlock' app. It is about 33 MB. Press OK when you are ready to import the APK.")
+                                title(res = R.string.manual_import)
+                                message(res = R.string.manual_import_instructions)
                                 positiveButton(android.R.string.ok) {
                                     activity.browseForFiles()
                                 }
@@ -64,30 +60,29 @@ class DownloadLibsDialog(private val activity: MainActivity, private val viewMod
                             }
                         }
                         status is DownloadStatus.Downloading -> {
-                            // Downloading
                             dialog = ProgressDialog.show(
                                 activity,
-                                "Processing",
-                                if(status.importing) "Importing APK..." else "Downloading files...",
+                                activity.getString(R.string.processing),
+                                if(status.importing) activity.getString(R.string.importing_apk) else activity.getString(R.string.downloading_files),
                                 true,
                                 false
                             )
                         }
                         status is DownloadStatus.DownloadError -> {
-                            // Download failed
                             dialog = MaterialDialog(activity).show {
-                                title(text = "Error")
+                                title(res = R.string.error_title)
                                 if(status.importing) {
-                                    message(text = "Could not import the APK, are you sure it's the correct APK?")
-                                    positiveButton(text = "Ok") {
+                                    message(res = R.string.import_error_message)
+                                    positiveButton(android.R.string.ok) {
                                         viewModel.setAskImport()
                                     }
                                 } else {
-                                    message(text = "An error occurred while downloading the files: ${status.error ?: "Unknown error"}")
-                                    positiveButton(text = "Retry") {
+                                    val errorMsg = status.error?.localizedMessage ?: activity.getString(R.string.unknown_error)
+                                    message(text = activity.getString(R.string.download_error_message, errorMsg))
+                                    positiveButton(res = R.string.retry) {
                                         viewModel.downloadLibs(activity, null)
                                     }
-                                    negativeButton(text = "Manual import") {
+                                    negativeButton(res = R.string.manual_import) {
                                         viewModel.setAskImport()
                                     }
                                 }
