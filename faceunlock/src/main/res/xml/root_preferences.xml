@@ -3,33 +3,33 @@
     <SwitchPreference
         android:defaultValue="true"
         android:key="preload_face"
-        android:summary="Keeps the program loaded in the background. Uses slightly more RAM (~20 MB) but speeds up recognition by 30%."
-        android:title="Stay loaded in background" />
+        android:summary="@string/pref_preload_face_summary"
+        android:title="@string/pref_preload_face_title" />
     <SwitchPreference
         android:defaultValue="false"
         android:key="early_unlock_hook"
-        android:summary="Start the face unlock algorithm at the same time as the lockscreen is shown. May not work on all devices yet."
-        android:title="Even faster face unlock" />
+        android:summary="@string/pref_early_unlock_summary"
+        android:title="@string/pref_early_unlock_title" />
     <SwitchPreference
         android:defaultValue="false"
         android:key="require_pin_on_boot"
-        android:summary="Do not allow using face unlock until the phone is unlocked at least once after boot. Only enable this if your device does not already automatically enforce this."
-        android:title="Disable for first unlock" />
+        android:summary="@string/pref_require_pin_summary"
+        android:title="@string/pref_require_pin_title" />
     <SwitchPreference
         android:defaultValue="true"
         android:key="bypass_keyguard"
-        android:summary="Automatically dismiss lockscreen once authenticated with face"
-        android:title="Auto dismiss lockscreen" />
+        android:summary="@string/pref_bypass_keyguard_summary"
+        android:title="@string/pref_bypass_keyguard_title" />
     <ListPreference
         android:defaultValue="mode_unlock_fading"
         android:dependency="bypass_keyguard"
         android:entries="@array/unlock_animation"
         android:entryValues="@array/unlock_animation_values"
         android:key="unlock_animation"
-        android:title="Lockscreen dismiss animation" />
+        android:title="@string/pref_unlock_animation_title" />
     <SwitchPreference
         android:defaultValue="true"
         android:key="show_status_text"
-        android:summary="Show face unlock status on lockscreen"
-        android:title="Show status text" />
+        android:summary="@string/pref_show_status_summary"
+        android:title="@string/pref_show_status_title" />
 </PreferenceScreen>
