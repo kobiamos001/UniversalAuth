@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Colors -->
+    <!-- Primary Modern Colors -->
     <color name="primary">#2563EB</color>
     <color name="primary_dark">#1E40AF</color>
     <color name="primary_light">#DBEAFE</color>
@@ -14,7 +14,12 @@
     <color name="error_red">#EF4444</color>
     <color name="text_main">#1E293B</color>
     <color name="text_secondary">#64748B</color>
-
-    <!-- Misc -->
     <color name="stroke_color">#E2E8F0</color>
+
+    <!-- הצבעים שהיו חסרים וגרמו לשגיאה (תאימות ל-styles.xml הישן) -->
+    <color name="positive_button_text">#FFFFFF</color>
+    <color name="suw_flat_button_highlight">#1f000000</color>
+    <color name="theme_color">#2563EB</color>
+    <color name="white_32_overlay">#51ffffff</color>
+    <color name="enroll_progress_bar">#ffcdd4d8</color>
 </resources>
