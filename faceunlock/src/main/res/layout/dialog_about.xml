@@ -38,7 +38,7 @@
         android:text="©"
         android:textStyle="italic"
         android:textSize="14sp"
-        android:textColor="#0284C7" />
+        android:textColor="?android:attr/textColorSecondary" />
 
     <TextView
         android:layout_width="wrap_content"
