@@ -43,6 +43,11 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
         binding.authBtn.setOnClickListener {
             startActivity(Intent(this, FaceAuthActivity::class.java))
         }
+        
+        // --- תוספת: כפתור פתיחת ההגדרות החדש ---
+        binding.btnOpenSettings.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
 
         pickApkLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             if(uri != null) chooseLibsViewModel.downloadLibs(this, uri)
