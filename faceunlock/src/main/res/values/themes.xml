@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/theme_color</item>
-        <item name="colorSecondary">@color/theme_color</item>
-        <item name="android:windowActivityTransitions">true</item>
+    <!-- שימוש בעיצוב Material 3 הרשמי של גוגל -->
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- הגדרת צבעים בסגנון התכלת/כחול מהתמונה שלך -->
+        <item name="colorPrimary">#0284C7</item>
+        <item name="colorSecondary">#0369A1</item>
+        <item name="colorError">#D32F2F</item>
         
-        <!-- Force modern switches across the app -->
-        <item name="switchStyle">@style/Widget.MaterialComponents.CompoundButton.Switch</item>
+        <!-- אומר למסך ההגדרות להשתמש בעיצוב המודרני -->
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
-    <!-- Settings theme -->
-    <style name="SettingsTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="colorPrimary">@color/theme_color</item>
-        <item name="colorSecondary">@color/theme_color</item>
-        <item name="switchStyle">@style/Widget.MaterialComponents.CompoundButton.Switch</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
-    </style>
+    <style name="SettingsTheme" parent="AppTheme" />
 </resources>
