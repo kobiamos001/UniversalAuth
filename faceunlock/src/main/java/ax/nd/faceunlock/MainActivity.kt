@@ -10,11 +10,12 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import ax.nd.faceunlock.databinding.ActivityMain2Binding
+import ax.nd.faceunlock.databinding.ActivityMain2Binding // וודא שזה תואם לשם הקובץ XML שלך
 import ax.nd.faceunlock.service.LockscreenFaceAuthService
 import ax.nd.faceunlock.service.RemoveFaceController
 import ax.nd.faceunlock.service.RemoveFaceControllerCallbacks
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
     private val chooseLibsViewModel: ChooseLibsViewModel by viewModels()
     private var pickApkLauncher: ActivityResultLauncher<String>? = null
     private var requestUnlockPermsLauncher: ActivityResultLauncher<String>? = null
+    
+    // לאונצ'ר לאימות לפני מחיקה
     private lateinit var authForDeleteLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,16 +39,19 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // אתחול המנהל - יטען את ה-jniLibs באופן אוטומטי
         LibManager.init(this)
 
+        // רישום הלאונצ'ר לאימות הפנים
         authForDeleteLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
+                // אם האימות הצליח, נמחק את הפנים
                 val faceId = SharedUtil(this).getIntValueByKey(AppConstants.SHARED_KEY_FACE_ID)
                 if (faceId > -1) {
                     removeFace(faceId)
                 }
             } else {
-                Toast.makeText(this, getString(R.string.auth_failed_delete), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_auth_failed_delete), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -57,6 +63,7 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
             startActivity(Intent(this, FaceAuthActivity::class.java))
         }
 
+        // --- כפתור פתיחת הגדרות (נשאר) ---
         binding.btnOpenSettings.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
@@ -67,15 +74,16 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
 
         requestUnlockPermsLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {}
 
+        // דילוג על דיאלוג ההורדה - עובר ישר לבדיקת הרשאות עבודה
         checkAndAskForPermissions()
 
         lifecycleScope.launch {
             LibManager.libLoadError.flowWithLifecycle(lifecycle).collect { error ->
                 if(error != null) {
                     MaterialDialog(this@MainActivity).show {
-                        title(res = R.string.fatal_error)
-                        message(res = R.string.lib_load_jni_error)
-                        positiveButton(res = R.string.ok) { finish() }
+                        title(text = getString(R.string.dialog_fatal_error_title))
+                        message(text = getString(R.string.dialog_fatal_error_message))
+                        positiveButton(text = getString(R.string.btn_ok)) { finish() }
                     }
                 }
             }
@@ -89,9 +97,9 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
 
         if(!isAccessServiceEnabled(this, LockscreenFaceAuthService::class.java)) {
             MaterialDialog(this).show {
-                title(res = R.string.accessibility_required_title)
-                message(res = R.string.accessibility_required_msg)
-                positiveButton(res = R.string.open_settings) {
+                title(text = getString(R.string.dialog_accessibility_title))
+                message(text = getString(R.string.dialog_accessibility_message))
+                positiveButton(text = getString(R.string.btn_open_settings)) {
                     startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
                 }
             }
@@ -130,6 +138,7 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
             binding.authBtn.isEnabled = true
             binding.removeBtn.isEnabled = true
             binding.removeBtn.setOnClickListener { 
+                // במקום למחוק מיד, נדרוש אימות
                 val intent = Intent(this, FaceAuthActivity::class.java)
                 authForDeleteLauncher.launch(intent)
             }
@@ -142,7 +151,7 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
 
     override fun onRemove() {
         runOnUiThread {
-            Toast.makeText(this, getString(R.string.face_removed_success), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_face_removed), Toast.LENGTH_SHORT).show()
             updateButtons()
             releaseRemoveFaceController()
         }
@@ -150,7 +159,7 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
 
     override fun onError(errId: Int, message: String) {
         runOnUiThread {
-            Toast.makeText(this, getString(R.string.error_prefix, message), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.toast_error_format, message), Toast.LENGTH_LONG).show()
             releaseRemoveFaceController()
         }
     }
