@@ -21,7 +21,6 @@ class FaceAuthActivity : AppCompatActivity(), FaceAuthServiceCallbacks {
         controller = FaceAuthServiceController(this, prefs, this)
     }
 
-
     override fun onStart() {
         super.onStart()
         startTime = System.currentTimeMillis()
@@ -39,12 +38,7 @@ class FaceAuthActivity : AppCompatActivity(), FaceAuthServiceCallbacks {
 
     override fun onAuthed() {
         val time = System.currentTimeMillis() - startTime
-        // שימוש בסטרינג מהמשאבים עם פרמטר זמן
-        Toast.makeText(
-            this, 
-            getString(R.string.auth_success, time), 
-            Toast.LENGTH_SHORT
-        ).show()
+        Toast.makeText(this, getString(R.string.toast_auth_successful, time), Toast.LENGTH_SHORT).show()
         
         // הוספת תוצאה חיובית לפני הסגירה כדי שה-MainActivity ידע שהאימות הצליח
         setResult(Activity.RESULT_OK)
