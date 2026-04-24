@@ -14,6 +14,14 @@
         android:resizeableActivity="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        
+        <!-- התוספת החדשה: המסך של ההגדרות -->
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
         <activity
             android:name=".FaceAuthActivity"
             android:showOnLockScreen="true"
@@ -23,7 +31,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
