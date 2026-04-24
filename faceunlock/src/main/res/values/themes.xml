@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. Material3 is the most modern Android design system -->
-    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/theme_color</item>
         <item name="colorSecondary">@color/theme_color</item>
-        <!-- Enables standard modern window transitions -->
         <item name="android:windowActivityTransitions">true</item>
+        
+        <!-- Force modern switches across the app -->
+        <item name="switchStyle">@style/Widget.MaterialComponents.CompoundButton.Switch</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
-    <!-- Keep your settings theme if needed for the Fragment -->
-    <style name="SettingsTheme" parent="Theme.Material3.DayNight">
+    <!-- Settings theme -->
+    <style name="SettingsTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="colorPrimary">@color/theme_color</item>
         <item name="colorSecondary">@color/theme_color</item>
+        <item name="switchStyle">@style/Widget.MaterialComponents.CompoundButton.Switch</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 </resources>
