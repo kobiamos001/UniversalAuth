@@ -30,7 +30,6 @@ class ChooseLibsDialog(private val activity: MainActivity, private val viewModel
             LibManager.librariesData
                 .combine(viewModel.checkingStatus) { a, b -> a to b }
                 .flowWithLifecycle(activity.lifecycle).collect { (libData, checking) ->
-                    // Update text and buttons
                     linearLayout.removeAllViews()
                     libData.map { lib ->
                         createAndAttachChooserView(
@@ -41,22 +40,20 @@ class ChooseLibsDialog(private val activity: MainActivity, private val viewModel
                         )
                     }
 
-                    // Update continue button
                     val allLibsValid = libData.all { it.valid }
                     dialog.setActionButtonEnabled(WhichButton.POSITIVE, !checking && allLibsValid)
             }
         }
 
         activity.lifecycleScope.launch {
-            // Update ProgressDialog
             var progressDialog: ProgressDialog? = null
             viewModel.checkingStatus.flowWithLifecycle(activity.lifecycle).collect { checking ->
                 if(checking) {
                     if (progressDialog == null) {
                         progressDialog = ProgressDialog.show(
                             activity,
-                            "Processing",
-                            "Validating file, please wait...",
+                            activity.getString(R.string.processing),
+                            activity.getString(R.string.validating_file),
                             true,
                             false
                         )
@@ -69,7 +66,6 @@ class ChooseLibsDialog(private val activity: MainActivity, private val viewModel
         }
 
         activity.lifecycleScope.launch {
-            // Update error dialog
             var curErrorDialog: MaterialDialog? = null
             viewModel.checkResult.flowWithLifecycle(activity.lifecycle).collect { result ->
                 curErrorDialog?.cancel()
@@ -80,12 +76,11 @@ class ChooseLibsDialog(private val activity: MainActivity, private val viewModel
         }
 
         dialog.show {
-            title(text = "Setup libraries")
+            title(res = R.string.setup_libraries)
             customView(view = linearLayout, scrollable = true, noVerticalPadding = true)
             cancelable(false)
             cancelOnTouchOutside(false)
-            positiveButton(text = "Continue") {
-                // Done with libs, check permissions
+            positiveButton(res = R.string.continue_text) {
                 activity.checkAndAskForPermissions()
             }
         }
@@ -103,14 +98,15 @@ class ChooseLibsDialog(private val activity: MainActivity, private val viewModel
         row.setPadding(horizPadding, vertPadding, horizPadding, vertPadding)
 
         val textView = TextView(activity)
-        textView.text = SpannableStringBuilder("${lib.name}\nStatus: ").apply {
+        val statusPrefix = activity.getString(R.string.status_label)
+        textView.text = SpannableStringBuilder("${lib.name}\n$statusPrefix").apply {
             if(valid) {
                 color(Color.GREEN) {
-                    append("FOUND")
+                    append(activity.getString(R.string.status_found))
                 }
             } else {
                 color(Color.RED) {
-                    append("MISSING")
+                    append(activity.getString(R.string.status_missing))
                 }
             }
         }
@@ -131,9 +127,9 @@ class ChooseLibsDialog(private val activity: MainActivity, private val viewModel
             gravity = Gravity.CENTER_VERTICAL
         }
         button.isEnabled = enabled
-        button.text = "Browse"
+        button.text = activity.getString(R.string.browse)
         button.setOnClickListener {
-//            activity.browseForFiles(lib)
+            // activity.browseForFiles(lib)
         }
         row.addView(button)
 
@@ -143,22 +139,18 @@ class ChooseLibsDialog(private val activity: MainActivity, private val viewModel
     fun openDialogForResult(result: CheckResult): MaterialDialog = MaterialDialog(activity).show {
         when(result) {
             is CheckResult.BadHash -> {
-                title(text = "Invalid file")
-                message(text = """
-                    This file does not appear to be a valid copy of the '${result.library.name}' library (hash mismatch).
-                    
-                    If you are really sure that this file will work, you can continue, but the app may crash or not work at all.
-                """.trimIndent())
+                title(res = R.string.invalid_file)
+                message(text = activity.getString(R.string.bad_hash_message, result.library.name))
                 positiveButton(android.R.string.cancel) {
                     viewModel.clearCheckResult()
                 }
-                negativeButton(text = "Continue anyway") {
+                negativeButton(res = R.string.continue_anyway) {
                     viewModel.saveBadHashLib(context)
                 }
             }
             is CheckResult.FileError -> {
-                title(text = "Error")
-                message(text = "Failed to load library file:\n${result.error}")
+                title(res = R.string.error_title)
+                message(text = activity.getString(R.string.load_lib_error, result.error.localizedMessage))
                 positiveButton(android.R.string.ok) {
                     viewModel.clearCheckResult()
                 }
