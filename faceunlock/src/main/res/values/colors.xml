@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Modern Colors -->
+    <!-- Modern Palette (הצבעים החדשים) -->
     <color name="primary">#2563EB</color>
     <color name="primary_dark">#1E40AF</color>
     <color name="primary_light">#DBEAFE</color>
-    
-    <!-- Backgrounds -->
     <color name="background_gray">#F8FAFC</color>
     <color name="card_white">#FFFFFF</color>
-    
-    <!-- Status Colors -->
-    <color name="status_blue">#0284C7</color>
-    <color name="error_red">#EF4444</color>
     <color name="text_main">#1E293B</color>
     <color name="text_secondary">#64748B</color>
     <color name="stroke_color">#E2E8F0</color>
+    <color name="error_red">#EF4444</color>
+    <color name="status_blue">#0284C7</color>
 
-    <!-- הצבעים שהיו חסרים וגרמו לשגיאה (תאימות ל-styles.xml הישן) -->
+    <!-- Legacy Support (למניעת שגיאות בסטיילים ישנים) -->
     <color name="positive_button_text">#FFFFFF</color>
     <color name="suw_flat_button_highlight">#1f000000</color>
     <color name="theme_color">#2563EB</color>
