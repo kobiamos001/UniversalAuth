@@ -1,5 +1,6 @@
 package ax.nd.faceunlock
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -29,6 +30,9 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
     private val chooseLibsViewModel: ChooseLibsViewModel by viewModels()
     private var pickApkLauncher: ActivityResultLauncher<String>? = null
     private var requestUnlockPermsLauncher: ActivityResultLauncher<String>? = null
+    
+    // לאונצ'ר לאימות לפני מחיקה
+    private lateinit var authForDeleteLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,19 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
 
         // אתחול המנהל - יטען את ה-jniLibs באופן אוטומטי
         LibManager.init(this)
+
+        // רישום הלאונצ'ר לאימות הפנים
+        authForDeleteLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // אם האימות הצליח, נמחק את הפנים
+                val faceId = SharedUtil(this).getIntValueByKey(AppConstants.SHARED_KEY_FACE_ID)
+                if (faceId > -1) {
+                    removeFace(faceId)
+                }
+            } else {
+                Toast.makeText(this, "Authentication failed. Cannot remove face.", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         binding.setupBtn.setOnClickListener {
             startActivity(Intent(this, SetupFaceIntroActivity::class.java))
@@ -50,8 +67,6 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
         binding.btnOpenSettings.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
-
-        // כפתור אודות נמחק מכאן כפי שביקשת
 
         pickApkLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             if(uri != null) chooseLibsViewModel.downloadLibs(this, uri)
@@ -122,7 +137,11 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
             binding.setupBtn.isEnabled = false
             binding.authBtn.isEnabled = true
             binding.removeBtn.isEnabled = true
-            binding.removeBtn.setOnClickListener { removeFace(faceId) }
+            binding.removeBtn.setOnClickListener { 
+                // במקום למחוק מיד, נדרוש אימות
+                val intent = Intent(this, FaceAuthActivity::class.java)
+                authForDeleteLauncher.launch(intent)
+            }
         } else {
             binding.setupBtn.isEnabled = true
             binding.authBtn.isEnabled = false
