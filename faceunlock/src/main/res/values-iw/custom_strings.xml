@@ -1,107 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- הגדרות כלליות -->
-    <string name="app_name">זיהוי פרצוף</string>
-    <string name="ok">אישור</string>
-    <string name="error_title">שגיאה</string>
-    <string name="retry">נסה שנית</string>
-
-    <!-- ספריות ורכיבי מערכת (LibManager / ChooseLibs) -->
-    <string name="setup_libraries">הגדרת רכיבי מערכת</string>
-    <string name="processing">מעבד נתונים...</string>
-    <string name="validating_file">מאמת קובץ, נא להמתין...</string>
-    <string name="continue_text">המשך</string>
-    <string name="browse">עיון</string>
-    <string name="status_label">סטטוס: </string>
-    <string name="status_found">נמצא</string>
-    <string name="status_missing">חסר</string>
-    <string name="invalid_file">קובץ לא תקין</string>
-    <string name="bad_hash_message">קובץ זה אינו נראה כעותק תקין של ספריית \'%1$s\' (חוסר התאמה בקוד האימות).\n\nאם הנך בטוח שהקובץ יעבוד, ניתן להמשיך, אך האפליקציה עלולה לקרוס או לא לפעול כלל.</string>
-    <string name="continue_anyway">המשך בכל זאת</string>
-    <string name="load_lib_error">טעינת קובץ הספרייה נכשלה:\n%1$s</string>
-
-    <!-- הורדת רכיבים (DownloadLibs) -->
-    <string name="download_required">נדרשת הורדה</string>
-    <string name="download_message">האפליקציה צריכה להוריד מספר קבצי מערכת (פחות מ-35 מגה-בייט) הנחוצים להפעלת זיהוי הפרצוף. האם להוריד אותם כעת?\n\nלחלופין, ניתן לייבא את הקובץ ידנית.</string>
-    <string name="manual_import">ייבוא ידני</string>
-    <string name="manual_import_instructions">נא לבחור את קובץ ה-APK של אפליקציית \'Moto Face Unlock\' בגרסה 01.03.0312. גודל הקובץ הוא כ-33 מגה-בייט. לחץ על אישור כאשר הנך מוכן לייבא את הקובץ.</string>
-    <string name="importing_apk">מייבא קובץ APK...</string>
-    <string name="downloading_files">מוריד קבצים...</string>
-    <string name="import_error_message">לא ניתן לייבא את ה-APK, האם הנך בטוח שזהו הקובץ הנכון?</string>
-    <string name="download_error_message">אירעה שגיאה בזמן הורדת הקבצים: %1$s</string>
-    <string name="unknown_error">שגיאה לא ידועה</string>
-
-    <!-- שגיאות טכניות במנוע ההורדה והספריות -->
-    <string name="error_unsupported_abi">האפליקציה אינה יכולה לפעול במכשיר זה: הארכיטקטורה אינה נתמכת.</string>
-    <string name="error_rename_failed">שינוי שם הקובץ הזמני נכשל.</string>
-    <string name="error_null_body">תגובת השרת ריקה.</string>
-    <string name="error_provider_crashed">ספק התוכן קרס.</string>
-    <string name="error_hash_mismatch">חוסר התאמה באימות הקובץ, ייתכן שההורדה נפגמה.</string>
-
-    <!-- מסך ראשי וניהול (MainActivity) -->
-    <string name="fatal_error">שגיאה קריטית</string>
-    <string name="lib_load_jni_error">טעינת הספריות מהמערכת נכשלה!</string>
-    <string name="auth_failed_delete">האימות נכשל. לא ניתן למחוק את נתוני הפרצוף.</string>
-    <string name="accessibility_required_title">נדרש שירות נגישות</string>
-    <string name="accessibility_required_msg">נא להפעיל את \'זיהוי פרצוף\' בהגדרות הנגישות כדי שהאפליקציה תוכל לפעול.</string>
-    <string name="open_settings">פתח הגדרות</string>
-    <string name="face_removed_success">נתוני הפרצוף נמחקו בהצלחה!</string>
-    <string name="error_prefix">שגיאה: %1$s</string>
-    <string name="auth_success">האימות הצליח (נמשך: %1$d מילישניות)!</string>
-
-    <!-- מצב תאורה וסביבה -->
-    <string name="attr_light_dark">הפנים צריכות להיות מוארות יותר</string>
-    <string name="attr_light_high">הפנים מוארות יותר מדי</string>
-    <string name="attr_light_shadow">הפנים מוצללים מדי</string>
-
-    <!-- כפתורים ופעולות -->
+    <!-- פרטי אפליקציה וכללי -->
+    <string name="app_name">זיהוי פנים</string>
     <string name="btn_done">בוצע</string>
-    <string name="btn_try">נסה שוב</string>
-    <string name="face_intro_next">הבא</string>
-    <string name="face_value_prop_cancel">לא, תודה</string>
-    <string name="face_value_prop_next">הגדר</string>
+    <string name="btn_ok">אישור</string>
+    <string name="btn_retry">נסה שוב</string>
+    <string name="btn_continue">המשך</string>
+    <string name="error_unknown">שגיאה לא ידועה</string>
 
-    <!-- הקדמה והסברים (Intro) -->
-    <string name="face_intro_conten_first_point">התאמת פנים היא שיטה פחות בטוחה משימוש בתבנית, PIN או סיסמה</string>
-    <string name="face_intro_content_second_point">אדם שפניו דומים לשלך עלול לבטל את נעילת הטלפון</string>
-    <string name="face_intro_content_third_point">הנתונים המשמשים לזיהוי הפנים נשמרים בפרטיות בטלפון שלך</string>
+    <!-- מבוא לזיהוי פנים / תהליך הגדרה -->
+    <string name="face_intro_title">אודות זיהוי פנים</string>
+    <string name="face_intro_summary">בטל את נעילת הטלפון באמצעות מבט בלבד.</string>
     <string name="face_intro_remember">זכור:</string>
-    <string name="face_intro_summary">ביטול נעילת טלפון באמצעות מבט בלבד.</string>
-    <string name="face_intro_title">אודות ביטול נעילה באמצעות זיהוי פרצוף</string>
-    <string name="title_activity_face_intro">ביטול נעילה באמצעות זיהוי פרצוף – הקדמה</string>
-
-    <!-- מסך הצגת יכולות (Value Prop) -->
-    <string name="face_value_prop_summary">"זיהוי פרצוף מאפשר כניסה קלה לטלפון באמצעות מבט בלבד. מכיוון הטלפון מכיר את פניך, מסך הנעילה מציג הודעות רק כאשר אתה מביט בטלפון "</string>
-    <string name="facelock_setup_notification_text">הגדרת זיהוי פרצוף</string>
-    <string name="facelock_setup_notification_title">בטל נעילה באמצעות מבט</string>
-
-    <!-- הנחיות מצלמה וסריקה -->
-    <string name="face_camera_content">ישר את פניך</string>
-    <string name="face_camera_content_tip">הקפד למקם את פניך במרכז למטה. ודא שהן מוארות היטב והיישר מבט אל הטלפון.</string>
-    <string name="face_next_change_later_tip">ניתן לשנות זאת יותר מאוחר בהגדרות האבטחה.</string>
+    <string name="face_intro_conten_first_point">זיהוי פנים מאובטח פחות משימוש בדפוס, קוד PIN או סיסמה</string>
+    <string name="face_intro_content_second_point">מישהו שדומה לך עשוי לבטל את נעילת הטלפון שלך</string>
+    <string name="face_intro_content_third_point">הנתונים המשמשים לזיהוי פניך נשמרים בפרטיות בתוך הטלפון שלך</string>
+    <string name="face_intro_next">הבא</string>
+    <string name="face_intro_skip" translatable="false">@android:string/cancel</string>
+    
+    <string name="face_value_prop_next">הגדר</string>
+    <string name="face_value_prop_cancel">לא תודה</string>
+    <string name="face_value_prop_summary">"זיהוי פנים מאפשר לך להיכנס בקלות לטלפון שלך פשוט על ידי מבט בו. מכיוון שהטלפון מזהה את פניך, מסך הנעילה יציג התראות רק כאשר אתה מסתכל עליו"</string>
+    
+    <string name="face_camera_content">מרכז את פניך</string>
+    <string name="face_camera_content_tip">וודא שפניך ממוקמות במרכז למטה. שמור על פנים מוארות היטב והסתכל ישירות על הטלפון.</string>
+    
     <string name="face_next_content">הכל מוכן</string>
-    <string name="face_next_content_tip">"כעת, משסיימת לסרוק את פניך, תוכל לבטל את נעילת הטלפון באמצעות הצצה בלבד."</string>
+    <string name="face_next_content_tip">"כעת, לאחר שסרקת את פניך, תוכל לבטל את נעילת הטלפון במבט בלבד."</string>
+    <string name="face_next_change_later_tip">תוכל לשנות זאת מאוחר יותר בהגדרות האבטחה</string>
+    
     <string name="face_try_content">משהו השתבש</string>
-    <string name="face_try_content_tip">"סריקת הפנים נכשלה. ודא שאתה מואר היטב ומישיר מבט אל המצלמה."</string>
+    <string name="face_try_content_tip">"סריקת הפנים נכשלה. וודא שאתה נמצא במקום מואר ומסתכל ישירות על המצלמה."</string>
+    <string name="btn_try">נסה שוב</string>
 
-    <!-- הרשאות ומדיניות -->
-    <string name="perm_required_alert_button_app_info">פרטי אפליקציה</string>
-    <string name="perm_required_alert_msg">ביטול נעילת פנים זקוק להרשאה כדי לגשת לכמה דברים במכשיר שלך. בחר באפשרות \"הרשאות\" בפרטי האפליקציה כדי להפעיל.</string>
-    <string name="perm_required_alert_title">הרשאות נדרשות</string>
-    <string name="policy_disabled_alert_msg">אפשרות ביטול הנעילה באמצעות זיהוי פרצוף הושבתה על ידי מנהל המערכת.</string>
+    <string name="upgrade_finish_title">הכל בסדר!</string>
+    <string name="upgrade_finish_summary">"כעת אתה מוכן לבטל את נעילת המכשיר באמצעות זיהוי פנים"</string>
 
-    <!-- הגדרות נעילה -->
-    <string name="security_settings_face_unlock_bypass_lock_screen_summary">לחיצה על לחצן ההפעלה תפתח את מסך הבית או את האפליקציה האחרונה שהייתה בשימוש, מרגע שתתבצע התאמת פנים</string>
-    <string name="security_settings_face_unlock_bypass_lock_screen_title">עקיפת מסך נעילה</string>
-
-    <!-- שגיאות זיהוי -->
+    <!-- משוב מצלמה / חיישן -->
+    <string name="attr_light_dark">הפנים זקוקות ליותר אור</string>
+    <string name="attr_light_high">יש יותר מדי אור על הפנים</string>
+    <string name="attr_light_shadow">יש יותר מדי צללים על הפנים</string>
     <string name="unlock_failed_face_blur">הפנים מטושטשות מדי</string>
-    <string name="unlock_failed_face_large">הפנים קרובים מדי</string>
+    <string name="unlock_failed_face_large">הפנים קרובות מדי</string>
     <string name="unlock_failed_face_multi">זוהו יותר מדי פנים</string>
-    <string name="unlock_failed_face_not_complete">זוהה מראה חלקי בלבד של הפנים</string>
+    <string name="unlock_failed_face_not_complete">זוהה רק חלק מהפנים</string>
     <string name="unlock_failed_face_small">הפנים רחוקות מדי</string>
 
-    <!-- סיום -->
-    <string name="upgrade_finish_summary">"כעת אתה מוכן לבטל את נעילת המכשיר בעזרת זיהוי פרצוף"</string>
-    <string name="upgrade_finish_title">יפה!</string>
+    <!-- הרשאות ומדיניות -->
+    <string name="perm_required_alert_title">נדרשות הרשאות</string>
+    <string name="perm_required_alert_msg">שירות זיהוי פנים זקוק להרשאות גישה למספר משאבים במכשיר. בחר ב-\"מידע על האפליקציה\" תחת הרשאות כדי לאפשר זאת.</string>
+    <string name="perm_required_alert_button_app_info">מידע על האפליקציה</string>
+    <string name="policy_disabled_alert_msg">זיהוי פנים הושבת על ידי מנהל המערכת.</string>
+    <string name="dialog_accessibility_title">נדרש שירות נגישות</string>
+    <string name="dialog_accessibility_message">אנא הפעל את \'Face unlock\' בהגדרות הנגישות.</string>
+    <string name="btn_open_settings">פתח הגדרות</string>
+
+    <!-- ניהול ספריות (הגדרה/הורדה) -->
+    <string name="dialog_processing_title">מעבד...</string>
+    <string name="dialog_validating_message">מאמת קובץ, אנא המתן...</string>
+    <string name="dialog_setup_libs_title">הגדרת ספריות</string>
+    <string name="lib_status_format">%1$s\nסטטוס: </string>
+    <string name="status_found">נמצא</string>
+    <string name="status_missing">חסר</string>
+    <string name="btn_browse">עיון</string>
+    <string name="dialog_invalid_file_title">קובץ לא תקין</string>
+    <string name="dialog_invalid_file_message">קובץ זה אינו נראה כעותק תקין של ספריית \'%1$s\' (אי התאמת Hash).\n\nאם אתה בטוח שקובץ זה יעבוד, תוכל להמשיך, אך האפליקציה עלולה לקרוס או לא לעבוד כלל.</string>
+    <string name="btn_continue_anyway">המשך בכל זאת</string>
+    <string name="dialog_error_title">שגיאה</string>
+    <string name="dialog_load_lib_failed">טעינת קובץ הספרייה נכשלה:\n%1$s</string>
+    <string name="dialog_download_required_title">נדרשת הורדה</string>
+    <string name="dialog_download_required_message">האפליקציה צריכה להוריד מספר קבצי ספרייה (פחות מ-35 מגה-בייט) הדרושים להפעלת זיהוי הפנים. להוריד אותם כעת?\n\nלחלופין, ניתן לייבא את הקבצים באופן ידני.</string>
+    <string name="btn_manual_import">ייבוא ידני</string>
+    <string name="dialog_manual_import_title">ייבוא ידני</string>
+    <string name="dialog_manual_import_message">אנא מצא את ה-APK של גרסה 01.03.0312 של אפליקציית \'Moto Face Unlock\'. גודלו כ-33 מגה-בייט. לחץ על אישור כאשר תהיה מוכן לייבא את ה-APK.</string>
+    <string name="dialog_importing_apk">מייבא APK...</string>
+    <string name="dialog_downloading_files">מוריד קבצים...</string>
+    <string name="dialog_import_apk_error">לא ניתן לייבא את ה-APK, האם אתה בטוח שזהו ה-APK הנכון?</string>
+    <string name="dialog_download_error">אירעה שגיאה במהלך הורדת הקבצים: %1$s</string>
+    <string name="dialog_fatal_error_title">שגיאה קריטית</string>
+    <string name="dialog_fatal_error_message">טעינת הספריות מתוך jniLibs נכשלה!</string>
+
+    <!-- התראות והודעות קופצות (Toasts) -->
+    <string name="facelock_setup_notification_title">פתיחה במבט</string>
+    <string name="facelock_setup_notification_text">הגדר זיהוי פנים</string>
+    <string name="toast_auth_successful">האימות הצליח (זמן: %1$d מילישניות)!</string>
+    <string name="toast_auth_failed_delete">האימות נכשל. לא ניתן להסיר נתוני פנים.</string>
+    <string name="toast_face_removed">נתוני הפנים הוסרו בהצלחה!</string>
+    <string name="toast_error_format">שגיאה: %1$s</string>
+
+    <!-- ממשק ראשי ושירות -->
+    <string name="title_security">אבטחה</string>
+    <string name="status_face_unlock">זיהוי פנים</string>
+    <string name="status_biometric_active">האבטחה הביומטרית פעילה</string>
+    <string name="btn_setup_face">הגדר זיהוי פנים</string>
+    <string name="btn_test_auth">בדוק אימות</string>
+    <string name="btn_delete_face">מחק נתוני פנים</string>
+    <string name="lockscreen_status_looking">מחפש פנים...</string>
+    <string name="lockscreen_status_welcome">ברוך הבא!</string>
+    <string name="title_activity_face_intro">מבוא לזיהוי פנים</string>
+
+    <!-- הגדרות העדפה (Preferences) -->
+    <string name="security_settings_face_unlock_bypass_lock_screen_title">דילוג על מסך הנעילה</string>
+    <string name="security_settings_face_unlock_bypass_lock_screen_summary">לאחר האימות, עבור ישירות למסך הבית או לאפליקציה האחרונה שהייתה בשימוש</string>
+    <string name="pref_preload_face_title">השאר טעון ברקע</string>
+    <string name="pref_preload_face_summary">שומר את התוכנית טעונה ברקע. צורך מעט יותר זיכרון (כ-20 מגה-בייט) אך מאיץ את הזיהוי ב-30%.</string>
+    <string name="pref_early_unlock_title">זיהוי פנים מהיר עוד יותר</string>
+    <string name="pref_early_unlock_summary">מתחיל את אלגוריתם זיהוי הפנים ברגע שמסך הנעילה מוצג. עשוי לא לעבוד בכל המכשירים עדיין.</string>
+    <string name="pref_require_pin_title">השבת בפתיחה ראשונה</string>
+    <string name="pref_require_pin_summary">אל תאפשר שימוש בזיהוי פנים עד שהטלפון נפתח לפחות פעם אחת באמצעות קוד לאחר ההפעלה. הפעל זאת רק אם המכשיר שלך לא אוכף זאת באופן אוטומטי.</string>
+    <string name="pref_bypass_keyguard_title">ביטול אוטומטי של מסך הנעילה</string>
+    <string name="pref_bypass_keyguard_summary">בטל אוטומטית את מסך הנעילה לאחר אימות פנים מוצלח</string>
+    <string name="pref_unlock_animation_title">אנימציית ביטול נעילה</string>
+    <string name="pref_show_status_title">הצג טקסט סטטוס</string>
+    <string name="pref_show_status_summary">הצג את מצב זיהוי הפנים על מסך הנעילה</string>
+
 </resources>
