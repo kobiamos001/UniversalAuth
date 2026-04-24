@@ -1,0 +1,15 @@
+<resources>
+    <!-- אפשרויות בחירה לאנימציית ביטול נעילה -->
+    <string-array name="unlock_animation">
+        <item>מיידי 1</item>
+        <item>מיידי 2</item>
+        <item>מונפש</item>
+    </string-array>
+    
+    <!-- ערכים פנימיים - אין לתרגם אותם כדי לא לפגוע בלוגיקה של הקוד -->
+    <string-array name="unlock_animation_values">
+        <item>mode_wake_and_unlock</item>
+        <item>mode_wake_and_unlock_pulsing</item>
+        <item>mode_unlock_fading</item>
+    </string-array>
+</resources>
