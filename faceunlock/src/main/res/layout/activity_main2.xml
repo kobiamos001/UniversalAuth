@@ -14,7 +14,7 @@
         android:paddingBottom="40dp"
         tools:context=".MainActivity">
 
-        <!-- כפתור הגדרות בפינה העליונה -->
+        <!-- כפתור הגדרות -->
         <ImageView
             android:id="@+id/btn_open_settings"
             android:layout_width="48dp"
@@ -24,18 +24,19 @@
             android:padding="12dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@android:drawable/ic_menu_manage"
-            app:tint="?attr/colorOnSurfaceVariant"
+            app:tint="#888888"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- כרטיסיית סטטוס עליונה (Filled) -->
+        <!-- כרטיסיית סטטוס -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/status_card"
-            style="@style/Widget.Material3.CardView.Filled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="48dp"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="24dp"
             app:cardBackgroundColor="#E1F5FE"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -71,15 +72,15 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- כרטיסיית פעולות תחתונה (Elevated) -->
+        <!-- כרטיסיית פעולות -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/actions_card"
-            style="@style/Widget.Material3.CardView.Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="24dp"
             app:cardElevation="1dp"
+            app:cardCornerRadius="24dp"
             app:layout_constraintTop_toBottomOf="@id/status_card">
 
             <LinearLayout
@@ -90,13 +91,13 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/setup_btn"
-                    style="@style/Widget.Material3.Button.TextButton"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:text="Set Up Face"
                     android:textAllCaps="false"
                     android:textSize="16sp"
-                    android:textColor="?attr/colorOnSurface"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:gravity="center_vertical|start"
                     app:icon="@android:drawable/ic_menu_camera"
                     app:iconTint="?attr/colorPrimary"
@@ -104,37 +105,38 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/auth_btn"
-                    style="@style/Widget.Material3.Button.TextButton"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:text="Test Authentication"
                     android:textAllCaps="false"
                     android:textSize="16sp"
-                    android:textColor="?attr/colorOnSurface"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:gravity="center_vertical|start"
                     app:icon="@android:drawable/ic_secure"
                     app:iconTint="?attr/colorPrimary"
                     app:iconGravity="textStart" />
 
+                <!-- קו הפרדה - מוחלף לצבע בטוח במקום המשתנה שקרס -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="?attr/colorOutlineVariant"
+                    android:background="#1F888888"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/remove_btn"
-                    style="@style/Widget.Material3.Button.TextButton"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:text="Remove Face Data"
                     android:textAllCaps="false"
                     android:textSize="16sp"
-                    android:textColor="?attr/colorError"
+                    android:textColor="#D32F2F"
                     android:gravity="center_vertical|start"
                     app:icon="@android:drawable/ic_menu_delete"
-                    app:iconTint="?attr/colorError"
+                    app:iconTint="#D32F2F"
                     app:iconGravity="textStart" />
 
             </LinearLayout>
