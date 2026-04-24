@@ -23,6 +23,7 @@ import android.widget.TextView
 import androidx.core.content.getSystemService
 import ax.nd.faceunlock.FaceApplication
 import ax.nd.faceunlock.LibManager
+import ax.nd.faceunlock.R
 import ax.nd.faceunlock.pref.Prefs
 import ax.nd.faceunlock.util.Util
 import ax.nd.faceunlock.util.dpToPx
@@ -213,7 +214,7 @@ class LockscreenFaceAuthService : AccessibilityService(), FaceAuthServiceCallbac
                 // If animation is currently playing, we need to fire it's end listener
                 if(showStatusText) {
                     textViewAnimator?.cancel()
-                    textView?.text = "Looking for face..."
+                    textView?.text = getString(R.string.lockscreen_status_looking)
                     windowManager?.addView(textView, params)
                 }
                 startTime = System.currentTimeMillis()
@@ -287,13 +288,14 @@ class LockscreenFaceAuthService : AccessibilityService(), FaceAuthServiceCallbac
             putExtra(XposedConstants.EXTRA_BYPASS_KEYGUARD, prefs.bypassKeyguard.get())
         })
         handler?.post {
-            textView?.text = "Welcome!"
+            textView?.text = getString(R.string.lockscreen_status_welcome)
             hide(delay = 1000)
         }
     }
 
     override fun onError(errId: Int, message: String) {
         handler?.post {
+            // ה-Message מגיע בדרך כלל ממקור שגיאה חיצוני שממופה למחרוזת בשכבות אחרות
             textView?.text = message
             hide(delay = 2000)
         }
