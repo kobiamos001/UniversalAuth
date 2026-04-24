@@ -14,7 +14,7 @@
         android:paddingBottom="40dp"
         tools:context=".MainActivity">
 
-        <!-- כפתור הגדרות -->
+        <!-- כפתור הגדרות בפינה העליונה -->
         <ImageView
             android:id="@+id/btn_open_settings"
             android:layout_width="48dp"
@@ -28,14 +28,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- כרטיסיית סטטוס (בסגנון Filled של Material 3) -->
+        <!-- כרטיסיית סטטוס עליונה (Filled) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/status_card"
             style="@style/Widget.Material3.CardView.Filled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="48dp"
             app:cardBackgroundColor="#E1F5FE"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -47,8 +47,8 @@
                 android:padding="32dp">
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:src="@android:drawable/ic_secure"
                     app:tint="#0277BD" />
 
@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Face Unlock"
-                    android:textSize="24sp"
+                    android:textSize="26sp"
                     android:textStyle="bold"
                     android:textColor="#01579B" />
 
@@ -71,7 +71,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- כרטיסיית פעולות (כרטיסיית Surface רגילה) -->
+        <!-- כרטיסיית פעולות תחתונה (Elevated) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/actions_card"
             style="@style/Widget.Material3.CardView.Elevated"
@@ -88,26 +88,28 @@
                 android:orientation="vertical"
                 android:padding="8dp">
 
-                <!-- Set Up Button -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/setup_btn"
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:text="Set Up Face"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
                     android:textColor="?attr/colorOnSurface"
                     android:gravity="center_vertical|start"
                     app:icon="@android:drawable/ic_menu_camera"
                     app:iconTint="?attr/colorPrimary"
                     app:iconGravity="textStart" />
 
-                <!-- Test Auth Button -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/auth_btn"
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:text="Test Authentication"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
                     android:textColor="?attr/colorOnSurface"
                     android:gravity="center_vertical|start"
                     app:icon="@android:drawable/ic_secure"
@@ -121,13 +123,14 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginVertical="4dp"/>
 
-                <!-- Remove Button -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/remove_btn"
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:text="Remove Face Data"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
                     android:textColor="?attr/colorError"
                     android:gravity="center_vertical|start"
                     app:icon="@android:drawable/ic_menu_delete"
