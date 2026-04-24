@@ -9,10 +9,9 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        // הפעלת חץ ה"חזור" בסרגל הכלים למעלה
-        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
-        toolbar.setNavigationOnClickListener {
-            finish() // סוגר את ההגדרות וחוזר למסך הראשי
+        // סגירת המסך בלחיצה על כפתור החזור בסרגל הכלים
+        findViewById<MaterialToolbar>(R.id.toolbar).setNavigationOnClickListener {
+            finish()
         }
     }
 }
