@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="?android:attr/colorBackground">
+    android:background="#F3F4F6">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,7 +14,20 @@
         android:paddingBottom="40dp"
         tools:context=".MainActivity">
 
-        <!-- כפתור הגדרות -->
+        <!-- כפתור אודות (שמאל) -->
+        <ImageView
+            android:id="@+id/btn_about"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_info_custom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- כפתור הגדרות (ימין) -->
         <ImageView
             android:id="@+id/btn_open_settings"
             android:layout_width="48dp"
@@ -23,8 +36,7 @@
             android:layout_marginEnd="16dp"
             android:padding="12dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_menu_manage"
-            app:tint="#888888"
+            android:src="@drawable/ic_settings_custom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,11 +46,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="32dp"
             app:cardElevation="0dp"
             app:cardCornerRadius="24dp"
             app:cardBackgroundColor="#E1F5FE"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/btn_about">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,11 +59,11 @@
                 android:gravity="center"
                 android:padding="32dp">
 
+                <!-- שימוש במנעול המותאם אישית -->
                 <ImageView
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:src="@android:drawable/ic_secure"
-                    app:tint="#0277BD" />
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/ic_lock_custom" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -62,85 +74,54 @@
                     android:textStyle="bold"
                     android:textColor="#01579B" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="System active and secured"
-                    android:textSize="14sp"
-                    android:textColor="#0277BD" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- כרטיסיית פעולות -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/actions_card"
+        <!-- אזור הכפתורים (ללא אייקונים, לחצנים נורמליים) -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="24dp"
-            app:cardElevation="1dp"
-            app:cardCornerRadius="24dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintTop_toBottomOf="@id/status_card">
 
-            <LinearLayout
+            <!-- כפתור הגדרה (Filled) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/setup_btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:layout_height="60dp"
+                android:text="Set Up Face"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:cornerRadius="16dp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/setup_btn"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:text="Set Up Face"
-                    android:textAllCaps="false"
-                    android:textSize="16sp"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:gravity="center_vertical|start"
-                    app:icon="@android:drawable/ic_menu_camera"
-                    app:iconTint="?attr/colorPrimary"
-                    app:iconGravity="textStart" />
+            <!-- כפתור בדיקה (Outlined) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/auth_btn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="12dp"
+                android:text="Test Authentication"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:strokeWidth="1dp"
+                app:cornerRadius="16dp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/auth_btn"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:text="Test Authentication"
-                    android:textAllCaps="false"
-                    android:textSize="16sp"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:gravity="center_vertical|start"
-                    app:icon="@android:drawable/ic_secure"
-                    app:iconTint="?attr/colorPrimary"
-                    app:iconGravity="textStart" />
+            <!-- כפתור מחיקה (Text) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/remove_btn"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="12dp"
+                android:text="Remove Face Data"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textColor="#D32F2F"
+                app:cornerRadius="16dp" />
 
-                <!-- קו הפרדה - מוחלף לצבע בטוח במקום המשתנה שקרס -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#1F888888"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginVertical="4dp"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/remove_btn"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:text="Remove Face Data"
-                    android:textAllCaps="false"
-                    android:textSize="16sp"
-                    android:textColor="#D32F2F"
-                    android:gravity="center_vertical|start"
-                    app:icon="@android:drawable/ic_menu_delete"
-                    app:iconTint="#D32F2F"
-                    app:iconGravity="textStart" />
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
