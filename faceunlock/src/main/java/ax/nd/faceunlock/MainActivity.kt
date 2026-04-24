@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import ax.nd.faceunlock.databinding.ActivityMain2Binding
+import ax.nd.faceunlock.databinding.ActivityMain2Binding // וודא שזה תואם לשם הקובץ XML שלך
 import ax.nd.faceunlock.service.LockscreenFaceAuthService
 import ax.nd.faceunlock.service.RemoveFaceController
 import ax.nd.faceunlock.service.RemoveFaceControllerCallbacks
@@ -46,19 +46,12 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
             startActivity(Intent(this, FaceAuthActivity::class.java))
         }
 
-        // --- כפתור פתיחת הגדרות ---
+        // --- כפתור פתיחת הגדרות (נשאר) ---
         binding.btnOpenSettings.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
 
-        // --- כפתור פתיחת חלונית אודות ---
-        binding.btnAbout.setOnClickListener {
-            val dialogView = layoutInflater.inflate(R.layout.dialog_about, null)
-            AlertDialog.Builder(this)
-                .setView(dialogView)
-                .setPositiveButton("Close") { dialog, _ -> dialog.dismiss() }
-                .show()
-        }
+        // כפתור אודות נמחק מכאן כפי שביקשת
 
         pickApkLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             if(uri != null) chooseLibsViewModel.downloadLibs(this, uri)
