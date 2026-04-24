@@ -1,5 +1,6 @@
 package ax.nd.faceunlock
 
+import android.app.Activity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
@@ -39,6 +40,9 @@ class FaceAuthActivity : AppCompatActivity(), FaceAuthServiceCallbacks {
     override fun onAuthed() {
         val time = System.currentTimeMillis() - startTime
         Toast.makeText(this, "Authentication successful (took: ${time}ms)!", Toast.LENGTH_SHORT).show()
+        
+        // הוספת תוצאה חיובית לפני הסגירה כדי שה-MainActivity ידע שהאימות הצליח
+        setResult(Activity.RESULT_OK)
         finish()
     }
 
