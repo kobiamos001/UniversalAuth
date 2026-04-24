@@ -178,10 +178,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-4dp"
                 android:text="©"
                 android:textSize="18sp"
-                android:textColor="#94A3B8" />
+                android:textColor="#94A3B8"
+                android:fontFamily="cursive"
+                android:textStyle="italic" />
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
