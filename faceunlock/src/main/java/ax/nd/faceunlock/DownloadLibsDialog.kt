@@ -18,7 +18,7 @@ class DownloadLibsDialog(private val activity: MainActivity, private val viewMod
                 .combine(LibManager.librariesData) { a, b -> a to b }
                 .transformWhile { pair ->
                     emit(pair)
-                    pair.second.any { !it.valid }
+                    pair.second.any { !it.valid } // Terminate flow once all libs are valid
                 }
                 .flowWithLifecycle(activity.lifecycle)
                 .collect { (status, libs) ->
@@ -27,16 +27,18 @@ class DownloadLibsDialog(private val activity: MainActivity, private val viewMod
 
                     when {
                         libs.all { it.valid } -> {
+                            // All libs valid, continue to check perms
                             activity.checkAndAskForPermissions()
                         }
                         status == null -> {
+                            // Ask download
                             dialog = MaterialDialog(activity).show {
-                                title(res = R.string.download_required)
-                                message(res = R.string.download_message)
+                                title(text = activity.getString(R.string.dialog_download_required_title))
+                                message(text = activity.getString(R.string.dialog_download_required_message))
                                 positiveButton(android.R.string.ok) {
                                     viewModel.downloadLibs(activity, null)
                                 }
-                                negativeButton(res = R.string.manual_import) {
+                                negativeButton(text = activity.getString(R.string.btn_manual_import)) {
                                     viewModel.setAskImport()
                                 }
                                 cancelOnTouchOutside(false)
@@ -45,9 +47,10 @@ class DownloadLibsDialog(private val activity: MainActivity, private val viewMod
                             }
                         }
                         status is DownloadStatus.AskImport -> {
+                            // Ask user to import libraries manually
                             dialog = MaterialDialog(activity).show {
-                                title(res = R.string.manual_import)
-                                message(res = R.string.manual_import_instructions)
+                                title(text = activity.getString(R.string.dialog_manual_import_title))
+                                message(text = activity.getString(R.string.dialog_manual_import_message))
                                 positiveButton(android.R.string.ok) {
                                     activity.browseForFiles()
                                 }
@@ -60,29 +63,31 @@ class DownloadLibsDialog(private val activity: MainActivity, private val viewMod
                             }
                         }
                         status is DownloadStatus.Downloading -> {
+                            // Downloading
                             dialog = ProgressDialog.show(
                                 activity,
-                                activity.getString(R.string.processing),
-                                if(status.importing) activity.getString(R.string.importing_apk) else activity.getString(R.string.downloading_files),
+                                activity.getString(R.string.dialog_processing_title),
+                                if(status.importing) activity.getString(R.string.dialog_importing_apk) else activity.getString(R.string.dialog_downloading_files),
                                 true,
                                 false
                             )
                         }
                         status is DownloadStatus.DownloadError -> {
+                            // Download failed
                             dialog = MaterialDialog(activity).show {
-                                title(res = R.string.error_title)
+                                title(text = activity.getString(R.string.dialog_error_title))
                                 if(status.importing) {
-                                    message(res = R.string.import_error_message)
+                                    message(text = activity.getString(R.string.dialog_import_apk_error))
                                     positiveButton(android.R.string.ok) {
                                         viewModel.setAskImport()
                                     }
                                 } else {
-                                    val errorMsg = status.error?.localizedMessage ?: activity.getString(R.string.unknown_error)
-                                    message(text = activity.getString(R.string.download_error_message, errorMsg))
-                                    positiveButton(res = R.string.retry) {
+                                    val errorMessage = status.error?.message ?: activity.getString(R.string.error_unknown)
+                                    message(text = activity.getString(R.string.dialog_download_error, errorMessage))
+                                    positiveButton(text = activity.getString(R.string.btn_retry)) {
                                         viewModel.downloadLibs(activity, null)
                                     }
-                                    negativeButton(res = R.string.manual_import) {
+                                    negativeButton(text = activity.getString(R.string.btn_manual_import)) {
                                         viewModel.setAskImport()
                                     }
                                 }
