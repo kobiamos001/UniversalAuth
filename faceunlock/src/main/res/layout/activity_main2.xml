@@ -6,50 +6,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="#F3F4F6">
+    android:background="@color/background_gray">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="40dp"
-        tools:context=".MainActivity">
+        android:paddingBottom="40dp">
 
-        <!-- כפתור אודות (שמאל) -->
-        <ImageView
+        <!-- Header Bar -->
+        <ImageButton
             android:id="@+id/btn_about"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:padding="12dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/bg_icon_button"
             android:src="@drawable/ic_info_custom"
+            app:tint="@color/text_main"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- כפתור הגדרות (ימין) -->
-        <ImageView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Security"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_main"
+            app:layout_constraintTop_toTopOf="@id/btn_about"
+            app:layout_constraintBottom_toBottomOf="@id/btn_about"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageButton
             android:id="@+id/btn_open_settings"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:padding="12dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg_icon_button"
             android:src="@drawable/ic_settings_custom"
+            app:tint="@color/text_main"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- כרטיסיית סטטוס -->
+        <!-- Status Card -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/status_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="32dp"
-            app:cardElevation="0dp"
-            app:cardCornerRadius="24dp"
-            app:cardBackgroundColor="#E1F5FE"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="28dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/stroke_color"
+            app:cardBackgroundColor="@color/card_white"
             app:layout_constraintTop_toBottomOf="@id/btn_about">
 
             <LinearLayout
@@ -57,27 +69,42 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:padding="32dp">
+                android:padding="40dp">
 
-                <!-- שימוש במנעול המותאם אישית -->
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/bg_circle_gradient" />
+
+                <!-- בתוך ה-View הזה נשים את האייקון שלך במרכז -->
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:src="@drawable/ic_lock_custom" />
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="-64dp"
+                    android:src="@drawable/ic_lock_custom"
+                    app:tint="@color/primary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     android:text="Face Unlock"
-                    android:textSize="26sp"
-                    android:textStyle="bold"
-                    android:textColor="#01579B" />
+                    android:textSize="24sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/text_main" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Biometric security is active"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- אזור הכפתורים (ללא אייקונים, לחצנים נורמליים) -->
+        <!-- Actions Container -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,41 +113,52 @@
             android:layout_marginTop="32dp"
             app:layout_constraintTop_toBottomOf="@id/status_card">
 
-            <!-- כפתור הגדרה (Filled) -->
+            <!-- Primary Action -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/setup_btn"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Set Up Face"
+                android:layout_height="64dp"
+                android:text="Set Up Face Recognition"
                 android:textAllCaps="false"
                 android:textSize="16sp"
-                app:cornerRadius="16dp" />
+                android:fontFamily="sans-serif-medium"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:icon="@drawable/ic_face_custom"
+                app:iconGravity="textStart"
+                app:cornerRadius="18dp"
+                app:elevation="4dp"
+                android:backgroundTint="@color/primary" />
 
-            <!-- כפתור בדיקה (Outlined) -->
+            <!-- Secondary Action -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/auth_btn"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="16dp"
                 android:text="Test Authentication"
                 android:textAllCaps="false"
                 android:textSize="16sp"
-                app:strokeWidth="1dp"
-                app:cornerRadius="16dp" />
+                app:strokeColor="@color/primary"
+                app:strokeWidth="1.5dp"
+                app:cornerRadius="18dp"
+                android:textColor="@color/primary" />
 
-            <!-- כפתור מחיקה (Text) -->
+            <!-- Danger Zone -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/remove_btn"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="12dp"
-                android:text="Remove Face Data"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:text="Delete Face Data"
                 android:textAllCaps="false"
-                android:textSize="16sp"
-                android:textColor="#D32F2F"
-                app:cornerRadius="16dp" />
+                android:textSize="15sp"
+                android:textColor="@color/error_red"
+                app:icon="@drawable/ic_delete_custom"
+                app:iconTint="@color/error_red"
+                app:iconGravity="textStart" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
