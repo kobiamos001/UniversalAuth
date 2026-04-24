@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- שימוש בספרייה הנתמכת אצלך בפרויקט -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">#0284C7</item>
         <item name="colorSecondary">#0369A1</item>
         <item name="colorError">#D32F2F</item>
+        
+        <!-- סטטוס בר בהיר עם סמלים כהים -->
+        <item name="android:statusBarColor">#F3F4F6</item>
+        <item name="android:windowLightStatusBar">true</item>
+        
         <item name="android:windowActivityTransitions">true</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
