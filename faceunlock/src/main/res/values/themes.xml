@@ -1,17 +1,22 @@
-<style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
-    <item name="colorPrimary">@color/primary</item>
-    <item name="android:statusBarColor">@color/bg_gradient_start</item>
-    <item name="android:windowLightStatusBar">true</item>
-    <item name="fontFamily">sans-serif-medium</item>
-    
-    <!-- הפיכת כל הדיאלוגים למעוגלים מאוד -->
-    <item name="alertDialogTheme">@style/CustomAlertDialog</item>
-</style>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
-<style name="CustomAlertDialog" parent="Theme.Material3.DayNight.Dialog.Alert">
-    <item name="shapeAppearanceLargeComponent">@style/RoundedCornersLarge</item>
-</style>
+    <!-- ערכת הנושא המרכזית -->
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="android:statusBarColor">@color/bg_gradient_start</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@color/bg_gradient_start</item>
+    </style>
 
-<style name="RoundedCornersLarge" parent="">
-    <item name="cornerSize">28dp</item>
-</style>
+    <!-- הגדרות לגרסה ישנה של Setup Wizard אם נדרש -->
+    <style name="SettingsTheme" parent="AppTheme" />
+
+    <!-- סטייל לכפתורים מעוגלים -->
+    <style name="ModernButtonStyle" parent="Widget.Material3.Button">
+        <item name="cornerRadius">20dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+</resources>
