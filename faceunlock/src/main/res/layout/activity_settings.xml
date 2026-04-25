@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layoutDirection="rtl"
     android:background="#F3F4F6">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -25,19 +24,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Container for Settings Fragment -->
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerView"
                 android:name="ax.nd.faceunlock.pref.SettingsFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <!-- Footer Design (Scrolls with the settings) -->
+            <!-- Footer Design - Scrolls with settings -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginBottom="32dp"
                 android:orientation="vertical"
                 android:gravity="center">
