@@ -1,37 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- הערכת נושא הראשית -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary_dark</item>
-        <item name="colorSecondary">@color/status_blue</item>
-        
-        <!-- Surface & Background -->
-        <item name="android:windowBackground">@color/background_gray</item>
-        <item name="android:statusBarColor">@color/background_gray</item>
-        <item name="android:windowLightStatusBar">true</item>
+<style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+    <item name="colorPrimary">@color/primary</item>
+    <item name="android:statusBarColor">@color/bg_gradient_start</item>
+    <item name="android:windowLightStatusBar">true</item>
+    <item name="fontFamily">sans-serif-medium</item>
+    
+    <!-- הפיכת כל הדיאלוגים למעוגלים מאוד -->
+    <item name="alertDialogTheme">@style/CustomAlertDialog</item>
+</style>
 
-        <!-- שימוש בסטייל כפתורים מודרני כברירת מחדל -->
-        <item name="materialButtonStyle">@style/CustomButtonStyle</item>
-    </style>
+<style name="CustomAlertDialog" parent="Theme.Material3.DayNight.Dialog.Alert">
+    <item name="shapeAppearanceLargeComponent">@style/RoundedCornersLarge</item>
+</style>
 
-    <!-- הוספת SettingsTheme כדי למנוע את שגיאת ה-Build -->
-    <style name="SettingsTheme" parent="AppTheme" />
-
-    <!-- סטייל לכפתורים המעוגלים החדשים -->
-    <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button">
-        <item name="android:insetTop">0dp</item>
-        <item name="android:insetBottom">0dp</item>
-        <item name="shapeAppearanceOverlay">@style/ButtonRoundedCorners</item>
-    </style>
-
-    <style name="ButtonRoundedCorners" parent="">
-        <item name="cornerSize">18dp</item>
-    </style>
-
-    <!-- סטייל לדיאלוגים (Alert Dialogs) -->
-    <style name="AppTheme.AlertDialog" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-</resources>
+<style name="RoundedCornersLarge" parent="">
+    <item name="cornerSize">28dp</item>
+</style>
