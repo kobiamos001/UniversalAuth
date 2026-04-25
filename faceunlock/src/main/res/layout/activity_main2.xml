@@ -6,104 +6,70 @@
     android:layout_height="match_parent"
     android:background="@color/bg_gradient_start">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="אבטחה ביומטרית"
+            android:textSize="22sp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/text_title" />
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="24dp">
+            android:layout_marginTop="32dp"
+            app:cardCornerRadius="32dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/white">
 
-            <TextView
-                android:id="@+id/main_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="אבטחה ביומטרית"
-                android:textSize="20sp"
-                android:fontFamily="sans-serif-black"
-                android:textColor="@color/text_title"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <!-- כרטיס סטטוס מודרני -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/status_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                app:cardCornerRadius="32dp"
-                app:cardElevation="12dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/glass_stroke"
-                app:cardBackgroundColor="@color/white"
-                app:layout_constraintTop_toBottomOf="@id/main_title">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="40dp">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@android:drawable/ic_lock_idle_lock"
-                        app:tint="@color/primary" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="סטטוס אבטחה"
-                        android:textSize="22sp"
-                        android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/text_title" />
-
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- כפתורים -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="32dp"
-                app:layout_constraintTop_toBottomOf="@id/status_card">
+                android:gravity="center"
+                android:padding="40dp">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/setup_btn"
-                    style="@style/ModernButtonStyle"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:text="הגדרת זיהוי פנים"
-                    android:textSize="17sp"
-                    android:backgroundTint="@color/primary" />
+                    android:src="@android:drawable/ic_dialog_info"
+                    app:tint="@color/primary" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/auth_btn"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:layout_marginTop="16dp"
-                    app:shapeAppearanceOverlay="@style/RoundedCornersLarge"
-                    android:text="בדיקת אימות"
-                    android:textColor="@color/primary" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/remove_btn"
-                    style="@style/Widget.Material3.Button.TextButton"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="מחק נתונים"
-                    android:textColor="@color/error_text" />
+                    android:text="הגדרות פנים"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_title" />
             </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/setup_btn"
+            style="@style/ModernButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="40dp"
+            android:text="הגדר עכשיו"
+            android:backgroundTint="@color/primary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/remove_btn"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="מחק הגדרות"
+            android:textColor="@color/error_text" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
