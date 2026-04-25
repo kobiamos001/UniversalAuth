@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#F3F4F6"
-        app:title="Settings"
+        app:title="@string/title_settings"
         app:navigationIcon="@drawable/ic_back_custom" />
 
     <androidx.fragment.app.FragmentContainerView
