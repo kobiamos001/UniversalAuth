@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layoutDirection="rtl"
     android:background="#F3F4F6">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -14,41 +15,53 @@
         app:title="@string/title_settings"
         app:navigationIcon="@drawable/ic_back_custom" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="ax.nd.faceunlock.pref.SettingsFragment"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <!-- Footer Design moved here -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="HPower"
-            android:textSize="28sp"
-            android:textColor="#94A3B8"
-            android:fontFamily="cursive"
-            android:textStyle="italic" />
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="©"
-            android:textSize="24sp"
-            android:textColor="#94A3B8"
-            android:fontFamily="cursive"
-            android:textStyle="italic" />
+            <!-- Container for Settings Fragment -->
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerView"
+                android:name="ax.nd.faceunlock.pref.SettingsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    </LinearLayout>
+            <!-- Footer Design (Scrolls with the settings) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="32dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HPower"
+                    android:textSize="28sp"
+                    android:textColor="#94A3B8"
+                    android:fontFamily="cursive"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="©"
+                    android:textSize="24sp"
+                    android:textColor="#94A3B8"
+                    android:fontFamily="cursive"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
