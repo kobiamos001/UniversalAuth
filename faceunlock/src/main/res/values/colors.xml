@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- פלטת צבעים מודרנית - Cyber Style -->
-    <color name="primary">#6366F1</color> <!-- Indigo Modern -->
+    <!-- פלטת צבעים מודרנית -->
+    <color name="primary">#6366F1</color>
     <color name="primary_variant">#4338CA</color>
     <color name="accent_cyan">#22D3EE</color>
     
-    <!-- רקעים -->
     <color name="bg_gradient_start">#F8FAFC</color>
-    <color name="bg_gradient_end">#E2E8F0</color>
-    
-    <!-- טקסטים -->
     <color name="text_title">#0F172A</color>
     <color name="text_body">#475569</color>
     
-    <!-- אלמנטים של זכוכית ועומק -->
     <color name="glass_white">#CCFFFFFF</color>
     <color name="glass_stroke">#66FFFFFF</color>
-    <color name="card_shadow">#1A000000</color>
     
-    <!-- כפתורים וסטטוס -->
     <color name="btn_gradient_start">#6366F1</color>
     <color name="btn_gradient_end">#A855F7</color>
-    <color name="error_soft">#FEE2E2</color>
     <color name="error_text">#EF4444</color>
+
+    <!-- תמיכה לאחור וערכים נלווים -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>
