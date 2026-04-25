@@ -52,7 +52,7 @@
     <string name="perm_required_alert_button_app_info">מידע על האפליקציה</string>
     <string name="policy_disabled_alert_msg">זיהוי פנים הושבת על ידי מנהל המערכת.</string>
     <string name="dialog_accessibility_title">נדרש שירות נגישות</string>
-    <string name="dialog_accessibility_message">אנא הפעל את \'Face unlock\' בהגדרות הנגישות.</string>
+    <string name="dialog_accessibility_message">אנא הפעל את \'זיהוי פנים\' בהגדרות הנגישות.</string>
     <string name="btn_open_settings">פתח הגדרות</string>
 
     <!-- ניהול ספריות (הגדרה/הורדה) -->
