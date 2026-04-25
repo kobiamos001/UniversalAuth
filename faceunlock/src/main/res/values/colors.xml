@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Modern Palette (הצבעים החדשים) -->
-    <color name="primary">#2563EB</color>
-    <color name="primary_dark">#1E40AF</color>
-    <color name="primary_light">#DBEAFE</color>
-    <color name="background_gray">#F8FAFC</color>
-    <color name="card_white">#FFFFFF</color>
-    <color name="text_main">#1E293B</color>
-    <color name="text_secondary">#64748B</color>
-    <color name="stroke_color">#E2E8F0</color>
-    <color name="error_red">#EF4444</color>
-    <color name="status_blue">#0284C7</color>
-
-    <!-- Legacy Support (למניעת שגיאות בסטיילים ישנים) -->
-    <color name="positive_button_text">#FFFFFF</color>
-    <color name="suw_flat_button_highlight">#1f000000</color>
-    <color name="theme_color">#2563EB</color>
-    <color name="white_32_overlay">#51ffffff</color>
-    <color name="enroll_progress_bar">#ffcdd4d8</color>
+    <!-- פלטת צבעים מודרנית - Cyber Style -->
+    <color name="primary">#6366F1</color> <!-- Indigo Modern -->
+    <color name="primary_variant">#4338CA</color>
+    <color name="accent_cyan">#22D3EE</color>
+    
+    <!-- רקעים -->
+    <color name="bg_gradient_start">#F8FAFC</color>
+    <color name="bg_gradient_end">#E2E8F0</color>
+    
+    <!-- טקסטים -->
+    <color name="text_title">#0F172A</color>
+    <color name="text_body">#475569</color>
+    
+    <!-- אלמנטים של זכוכית ועומק -->
+    <color name="glass_white">#CCFFFFFF</color>
+    <color name="glass_stroke">#66FFFFFF</color>
+    <color name="card_shadow">#1A000000</color>
+    
+    <!-- כפתורים וסטטוס -->
+    <color name="btn_gradient_start">#6366F1</color>
+    <color name="btn_gradient_end">#A855F7</color>
+    <color name="error_soft">#FEE2E2</color>
+    <color name="error_text">#EF4444</color>
 </resources>
