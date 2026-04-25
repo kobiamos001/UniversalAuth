@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- פלטה מודרנית -->
+    <!-- צבעי בסיס מודרניים -->
     <color name="primary">#6366F1</color>
     <color name="primary_dark">#4338CA</color>
+    <color name="primary_light">#DBEAFE</color>
     <color name="accent_cyan">#22D3EE</color>
+    
+    <!-- רקעים וגרדיאנטים -->
     <color name="bg_gradient_start">#F8FAFC</color>
+    <color name="btn_gradient_start">#6366F1</color>
+    <color name="btn_gradient_end">#A855F7</color>
+    
+    <!-- צבעי טקסט וסטטוס -->
+    <color name="text_main">#1E293B</color>
+    <color name="text_secondary">#64748B</color>
     <color name="text_title">#0F172A</color>
     <color name="text_body">#475569</color>
-    <color name="glass_stroke">#E2E8F0</color>
+    <color name="error_red">#EF4444</color>
     <color name="error_text">#EF4444</color>
+    
+    <!-- אלמנטים עיצוביים (זה מה שהיה חסר) -->
+    <color name="stroke_color">#E2E8F0</color>
+    <color name="glass_stroke">#66FFFFFF</color>
+    <color name="card_white">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
+    <color name="background_gray">#F8FAFC</color>
 
-    <!-- צבעים שהמערכת דורשת (Legacy Support) - אל תמחק אותם -->
+    <!-- תמיכה במערכת (Legacy Support) -->
     <color name="positive_button_text">#FFFFFF</color>
     <color name="suw_flat_button_highlight">#1f000000</color>
     <color name="theme_color">#6366F1</color>
