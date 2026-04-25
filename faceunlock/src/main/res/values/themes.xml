@@ -1,61 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- 1. ערכת הנושא המודרנית (AppTheme) -->
-    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- הערכת נושא הראשית -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
-        <item name="android:statusBarColor">@color/bg_gradient_start</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorSecondary">@color/status_blue</item>
+        
+        <!-- Surface & Background -->
+        <item name="android:windowBackground">@color/background_gray</item>
+        <item name="android:statusBarColor">@color/background_gray</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowBackground">@color/bg_gradient_start</item>
-        <item name="materialButtonStyle">@style/ModernButtonStyle</item>
+
+        <!-- שימוש בסטייל כפתורים מודרני כברירת מחדל -->
+        <item name="materialButtonStyle">@style/CustomButtonStyle</item>
     </style>
 
-    <!-- תמיכה בסטייל של הגדרות המכשיר -->
+    <!-- הוספת SettingsTheme כדי למנוע את שגיאת ה-Build -->
     <style name="SettingsTheme" parent="AppTheme" />
 
-    <!-- 2. סטייל לכפתורים המעוגלים החדשים שלך -->
-    <style name="ModernButtonStyle" parent="Widget.Material3.Button">
-        <item name="cornerRadius">20dp</item>
+    <!-- סטייל לכפתורים המעוגלים החדשים -->
+    <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="shapeAppearanceOverlay">@style/ButtonRoundedCorners</item>
     </style>
 
-    <!-- 3. סטייל לכפתורי מערכת ישנים (SuwGlifButton) - מאוחד -->
-    <style name="SuwGlifButton.Primary" parent="@android:style/Widget.Material.Button.Colored">
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:minWidth">0.0dip</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+    <style name="ButtonRoundedCorners" parent="">
+        <item name="cornerSize">18dp</item>
     </style>
 
-    <style name="SuwGlifButton.Secondary" parent="@android:style/Widget.Material.Button.Borderless.Colored">
-        <item name="android:textColor">@color/primary</item>
-        <item name="android:minWidth">0.0dip</item>
-        <item name="android:colorControlHighlight">@color/suw_flat_button_highlight</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+    <!-- סטייל לדיאלוגים (Alert Dialogs) -->
+    <style name="AppTheme.AlertDialog" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
-
-    <!-- 4. טקסטים דקורטיביים ופריסות (ButtonText & InfoText) -->
-    <style name="ButtonText">
-        <item name="android:textSize">14.0sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="ButtonTextRound" parent="@style/ButtonText">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:paddingStart">16dp</item>
-        <item name="android:paddingEnd">16dp</item>
-    </style>
-
-    <style name="InfoTextFinished">
-        <item name="android:textSize">16.0sp</item>
-        <item name="android:alpha">0.8</item>
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
 </resources>
