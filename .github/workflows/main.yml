@@ -20,9 +20,9 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build APK
-      run: ./gradlew :faceunlock:assembleDebug
+      run: ./gradlew :faceunlock:assembleRelease
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: faceunlock-apk
-        path: faceunlock/build/outputs/apk/debug/*.apk
+        path: faceunlock/build/outputs/apk/release/*.apk
