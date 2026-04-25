@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/bg_gradient_start">
 
-    <!-- רקע דקורטיבי (עיגול מטושטש בצד למראה מודרני) -->
-    <View
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:background="@drawable/bg_blur_circle"
-        android:layout_marginTop="-150dp"
-        android:layout_marginEnd="-100dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,42 +16,31 @@
             android:layout_height="wrap_content"
             android:padding="24dp">
 
-            <!-- Header -->
             <TextView
-                android:id="@+id/header_label"
+                android:id="@+id/main_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="אבטחת המכשיר"
-                android:textSize="14sp"
-                android:textColor="@color/primary"
+                android:layout_marginTop="20dp"
+                android:text="אבטחה ביומטרית"
+                android:textSize="20sp"
                 android:fontFamily="sans-serif-black"
-                android:textAllCaps="true"
-                android:letterSpacing="0.1"
+                android:textColor="@color/text_title"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageButton
-                android:id="@+id/btn_open_settings"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/bg_glass_icon"
-                android:src="@drawable/ic_settings_custom"
-                android:elevation="4dp"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <!-- Main Visual Card -->
+            <!-- כרטיס סטטוס מודרני -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/status_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 app:cardCornerRadius="32dp"
-                app:cardElevation="20dp"
+                app:cardElevation="12dp"
                 app:strokeWidth="1dp"
                 app:strokeColor="@color/glass_stroke"
-                app:cardBackgroundColor="@color/glass_white"
-                app:layout_constraintTop_toBottomOf="@id/header_label">
+                app:cardBackgroundColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/main_title">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -70,90 +49,59 @@
                     android:gravity="center"
                     android:padding="40dp">
 
-                    <!-- אנימציית הילה סביב האייקון -->
-                    <FrameLayout
-                        android:layout_width="120dp"
-                        android:layout_height="120dp">
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/bg_pulse_ring" />
-                        <ImageView
-                            android:layout_width="56dp"
-                            android:layout_height="56dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_lock_custom"
-                            app:tint="@color/primary" />
-                    </FrameLayout>
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@android:drawable/ic_lock_idle_lock"
+                        app:tint="@color/primary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:text="Face ID פעיל"
-                        android:textSize="26sp"
-                        android:fontFamily="sans-serif-black"
+                        android:layout_marginTop="20dp"
+                        android:text="סטטוס אבטחה"
+                        android:textSize="22sp"
+                        android:fontFamily="sans-serif-medium"
                         android:textColor="@color/text_title" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="הגנה ביומטרית מאושרת"
-                        android:textSize="15sp"
-                        android:textColor="@color/text_body" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Action Buttons Section -->
+            <!-- כפתורים -->
             <LinearLayout
-                android:id="@+id/actions_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintTop_toBottomOf="@id/status_card">
 
-                <!-- כפתור ראשי עם גרדיאנט -->
-                <androidx.appcompat.widget.AppCompatButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/setup_btn"
+                    style="@style/ModernButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
-                    android:text="הגדר זיהוי פנים"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:fontFamily="sans-serif-medium"
-                    android:textAllCaps="false"
-                    android:background="@drawable/bg_button_gradient"
-                    android:elevation="8dp" />
+                    android:text="הגדרת זיהוי פנים"
+                    android:textSize="17sp"
+                    android:backgroundTint="@color/primary" />
 
-                <!-- כפתור בדיקה - סגנון Ghost/Outline -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/auth_btn"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:layout_marginTop="16dp"
+                    app:shapeAppearanceOverlay="@style/RoundedCornersLarge"
                     android:text="בדיקת אימות"
-                    android:textAllCaps="false"
-                    android:textSize="16sp"
-                    app:strokeColor="@color/primary"
-                    app:strokeWidth="2dp"
-                    app:cornerRadius="20dp"
                     android:textColor="@color/primary" />
 
-                <!-- כפתור מחיקה - עדין יותר -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/remove_btn"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="מחיקת נתונים ביומטריים"
-                    android:textAllCaps="false"
+                    android:layout_marginTop="16dp"
+                    android:text="מחק נתונים"
                     android:textColor="@color/error_text" />
-
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
