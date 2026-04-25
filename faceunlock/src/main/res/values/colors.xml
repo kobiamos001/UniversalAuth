@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- פלטת צבעים מודרנית -->
+    <!-- פלטה מודרנית -->
     <color name="primary">#6366F1</color>
-    <color name="primary_variant">#4338CA</color>
+    <color name="primary_dark">#4338CA</color>
     <color name="accent_cyan">#22D3EE</color>
-    
     <color name="bg_gradient_start">#F8FAFC</color>
     <color name="text_title">#0F172A</color>
     <color name="text_body">#475569</color>
-    
-    <color name="glass_white">#CCFFFFFF</color>
-    <color name="glass_stroke">#66FFFFFF</color>
-    
-    <color name="btn_gradient_start">#6366F1</color>
-    <color name="btn_gradient_end">#A855F7</color>
+    <color name="glass_stroke">#E2E8F0</color>
     <color name="error_text">#EF4444</color>
-
-    <!-- תמיכה לאחור וערכים נלווים -->
     <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
+
+    <!-- צבעים שהמערכת דורשת (Legacy Support) - אל תמחק אותם -->
+    <color name="positive_button_text">#FFFFFF</color>
+    <color name="suw_flat_button_highlight">#1f000000</color>
+    <color name="theme_color">#6366F1</color>
+    <color name="white_32_overlay">#51ffffff</color>
+    <color name="enroll_progress_bar">#ffcdd4d8</color>
 </resources>
